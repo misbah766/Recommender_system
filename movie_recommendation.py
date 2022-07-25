@@ -56,12 +56,12 @@ def get_model(TRAIN=False):
   if TRAIN:
     model.train(num_iterations=1000, learning_rate=10.)
     # scores = compute_scores(model.embeddings["user_id"][43], model.embeddings["movie_id"], measure=COSINE)
-    
+
     save_model('models/model_embeddings.pkl', model.embeddings)
-  
+
   embeddings = load_model('models/model_embeddings.pkl')
   return embeddings
-    
+
 
 
 def get_movie_recommendations_by_user(user_id, TRAIN):

@@ -132,7 +132,7 @@ def movie_neighbors(embeddings, title_substring, movies, measure='cosine', k=6):
 def save_model(file_path, model):
   with open(file_path, 'wb') as files:
     pickle.dump(model,files, protocol=pickle.HIGHEST_PROTOCOL)
-    
+
 def load_model(file_path):
   with open(file_path, 'rb') as files:
     model = pickle.load(files)

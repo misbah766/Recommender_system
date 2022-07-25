@@ -4,7 +4,7 @@ Created on Wed Jul 20 11:45:44 2022
 
 @author: misbah.iqbal
 """
-import tensorflow.compat.v1 as tf 
+import tensorflow.compat.v1 as tf
 import collections
 import pickle
 class CFModel(object):
@@ -30,7 +30,7 @@ class CFModel(object):
 
   def train(self, num_iterations=100, learning_rate=1.0, plot_results=True,
             optimizer=tf.train.GradientDescentOptimizer):
-    
+
     with self._loss.graph.as_default():
       opt = optimizer(learning_rate)
       train_op = opt.minimize(self._loss)
@@ -61,9 +61,9 @@ class CFModel(object):
           for metric_val, result in zip(metrics_vals, results):
             for k, v in result.items():
               metric_val[k].append(v)
-          
+
       for k, v in self._embedding_vars.items():
         self._embeddings[k] = v.eval()
-        
-  
+
+
     return results
