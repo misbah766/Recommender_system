@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title of the document</title>
+    <style>
+      table {
+        width: 80%;
+        margin: 30px auto;
+        border-collapse: collapse;
+      }
+      thead {
+        background-color: #1c87c9;
+        color: #ffffff;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #666666;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Cosine score</th>
+          <th>Movie_id</th>
+          <th>Titles</th>
+          <th>Genres</th>
+        </tr>
+      </thead>
+
+      <tbody>
+            <tr>
+            {%for record in recommended_movies%}
+            <td>{{recommended_movies[record].cosine_score}}</td>
+            <td>{{recommended_movies[record].movie_id}}</td>
+            <td>{{recommended_movies[record].titles}}</td>
+            <td>{{recommended_movies[record].genres}}</td>
+            </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

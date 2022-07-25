@@ -87,7 +87,7 @@ def user_recommendations(embeddings, user_id, movies, ratings, measure='cosine',
   if USER_RATINGS:
     scores = compute_scores(
         embeddings["user_id"][user_id], embeddings["movie_id"], measure)
-    score_key = measure + ' score'
+    score_key = measure + '_score'
     df = pd.DataFrame({
         score_key: list(scores),
         'movie_id': movies['movie_id'],
@@ -105,6 +105,8 @@ def user_recommendations(embeddings, user_id, movies, ratings, measure='cosine',
 def movie_neighbors(embeddings, title_substring, movies, measure='cosine', k=6):
   # Search for movie ids that match the given substring.
   ids =  movies[movies['title'].str.contains(title_substring)].index.values
+  print(ids)
+  print
   titles = movies.iloc[ids]['title'].values
   if len(titles) == 0:
     raise ValueError("Found no movies with title %s" % title_substring)
@@ -116,9 +118,10 @@ def movie_neighbors(embeddings, title_substring, movies, measure='cosine', k=6):
   scores = compute_scores(
       embeddings["movie_id"][movie_id], embeddings["movie_id"],
       measure)
-  score_key = measure + ' score'
+  score_key = measure + '_score'
   df = pd.DataFrame({
       score_key: list(scores),
+      'movie_id': movies["movie_id"],
       'titles': movies['title'],
       'genres': movies['all_genres']
   })
